@@ -12,4 +12,7 @@ public class CloudalibabaSentinelService8401Application {
         SpringApplication.run(CloudalibabaSentinelService8401Application.class, args);
     }
 
+
+
+
 }

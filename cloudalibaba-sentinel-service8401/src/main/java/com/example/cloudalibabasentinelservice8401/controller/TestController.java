@@ -1,5 +1,7 @@
 package com.example.cloudalibabasentinelservice8401.controller;
 
+import com.example.cloudalibabasentinelservice8401.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +16,9 @@ import java.util.concurrent.TimeUnit;
  **/
 @RestController
 public class TestController {
+    @Autowired
+    TestService testService;
+
     @RequestMapping("/testA")
     public String testA(){
         try{
@@ -26,6 +31,11 @@ public class TestController {
 
     @RequestMapping("/testB")
     public String testB(){
-        return "testB";
+        return testService.common();
+    }
+
+    @RequestMapping("/testService")
+    public String testService(){
+        return testService.common();
     }
 }
