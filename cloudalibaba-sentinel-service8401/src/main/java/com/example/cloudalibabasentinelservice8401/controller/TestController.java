@@ -67,4 +67,11 @@ public class TestController {
     public String myBlockHandler(String hot1, String hot2, String hot3, BlockException exception){
         return "System is busy";
     }
+
+    @RequestMapping("/testHandler")
+    @SentinelResource(value = "testHandler",blockHandlerClass = com.example.cloudalibabasentinelservice8401.common.BlockHandler.class,
+    blockHandler = "handlerException1")
+    public String testHandler(){
+        return "----testHandler";
+    }
 }
