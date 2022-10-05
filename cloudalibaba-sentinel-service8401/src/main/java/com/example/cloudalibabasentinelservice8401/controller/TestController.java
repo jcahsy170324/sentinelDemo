@@ -4,6 +4,7 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.example.cloudalibabasentinelservice8401.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -73,5 +74,11 @@ public class TestController {
     blockHandler = "handlerException1")
     public String testHandler(){
         return "----testHandler";
+    }
+
+    @GetMapping("/order/test1")
+    @SentinelResource(value = "test1")
+    public String test1() throws InterruptedException {
+        return "test1 ";
     }
 }
