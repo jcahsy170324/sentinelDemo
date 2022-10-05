@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Version 1.0
  **/
 @Service
-//远程调用服务名称
 @FeignClient("nacos-provider")
 public interface OpenFeignService {
     /**
      **此方法表示远程调用服务info/{id}接口
      **/
     @GetMapping("info/{id}")
-    public JsonResult<String> jcSql(@PathVariable("id")Long id);
+    public JsonResult<String> info(@PathVariable("id")Long id);
 }

@@ -1,10 +1,12 @@
 package com.example.consumer8084.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.example.consumer8084.service.FeignService;
 import common.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,8 @@ public class DemoController {
     private String SERVICE_URL;
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private FeignService feignService;
 
     @RequestMapping("/consumer/fallback/{id}")
     @SentinelResource(value = "fallback",fallback = "fallbackDemo",blockHandler = "blockHandlerDemo")
@@ -47,5 +51,12 @@ public class DemoController {
         return result;
     }
 
+    @GetMapping("getInfo/{id}")
+    public JsonResult<String> getInfo(@PathVariable("id") Long id){
+        if(id > 3){
+            throw new RuntimeException("没有该id");
+        }
+        return feignService.info(id);
+    }
 
 }

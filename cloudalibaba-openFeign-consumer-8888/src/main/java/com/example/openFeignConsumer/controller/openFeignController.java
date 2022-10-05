@@ -21,6 +21,6 @@ public class openFeignController {
 
     @RequestMapping("getInfo/{id}")
     public JsonResult<String> getInfo(@PathVariable("id") Long id){
-        return openFeignService.jcSql(id);
+        return openFeignService.info(id);
     }
 }
