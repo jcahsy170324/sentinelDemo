@@ -1,0 +1,15 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: nacos-consumer-openFeign
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 81.69.193.138:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
